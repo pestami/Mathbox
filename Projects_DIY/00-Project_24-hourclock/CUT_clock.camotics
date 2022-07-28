@@ -1,0 +1,17 @@
+{
+      "units": "metric",
+      "resolution-mode": "high",
+      "resolution": 1,
+      "tools": {},
+      "workpiece": {
+        "automatic": false,
+        "margin": 5,
+        "bounds": {
+          "min": [-15.6, -15.6, -5.25],
+          "max": [305.6, 305.6, -3.25]
+        }
+      },
+      "files": [
+        "CUT_clock.nc"
+      ]
+    }
