@@ -3,6 +3,8 @@
 M3 S0
 S0 
 (G00 – Rapid Positioning------------Laser OFF)
+(G01 – Linear interpolation------------ )
+(G02 – Circular interpolation CCW------------ )
 S0 
 G0 F1000 X0.000000 Y0.000000
 
