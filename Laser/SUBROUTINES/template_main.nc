@@ -17,51 +17,35 @@
 (======CODE MANDATORY============)
 M3 S0  (M03 – Spindle on in a clockwise)
 (================================)
-S0 		(--Laser 000% OFF)
-G0 F1000 X0.000000 Y0.000000
-S1000	(---Laser 100% ON)
-S0 		(--Laser 000% OFF)
-(MAIN BEGIN Engrave=========================)
+(=BEGIN Engrave=========================)
 
-
-G00 X00 Y00
-M97 P10 L01 (SUB PROGRAM CALL 1 TIMES)
-
+(New Coordinates---------------)
+S0
 G00 X10 Y10
 G92 X0 Y0 (Shifts current G54)
-M97 P10 L01 (SUB PROGRAM CALL 1 TIMES)
+(10,10)
+(------------------------------)
+(SUB PROGRAM CALL 1 TIMES M98 = subprogram call)
+#M97 "template_Coordinates_Subroutines_2022_10_07.nc"
 
-
-
-
-(MAIN END Engrave=========================)
-M30 (program end with rewind)
-
-(SUB BEGIN================================)
-N10 (SUBROUTINE CALL BY M97)
-(BEGIN SQUARE)
-G00 X00 Y00
-S1000
-G01 X10 Y00
-G01 X10 Y10
-G01 X00 Y10
-G01 X00 Y00
+(New Coordinates---------------)
 S0
-(END SQUARE)
-(BEGIN ARTWORK)
-G00 X00 Y05
-S1000
-G03 X10 Y05 R5
+G00 X10 Y10
+G92 X0 Y0 (Shifts current G54)
+(10,10)
+(------------------------------)
+(SUB PROGRAM CALL 1 TIMES M98 = subprogram call)
+#M97 "template_Coordinates_Subroutines_2022_10_07.nc"
+
+(New Coordinates---------------)
 S0
-G00 X00 Y05
-S1000
-G02 X10 Y05 R5
-(END ARTWORK)
-M99 (RETURN TO CALL BY  M98)
-(SUB END================================)
+G00 X-20 Y-20
+G92 X0 Y0 (Shifts current G54)
+(10,10)(10,10)(-20-20)
+(------------------------------)
+(SUB PROGRAM CALL 1 TIMES M98 = subprogram call)
+#M97 "template_Coordinates_Subroutines_2022_10_07.nc"
 
 (=END Engrave===========================)
 (======END============)
-(G00 – Rapid Positioning------------Laser OFF)
-S0 
-G0 Z10.000000
+S0 		(--Laser 000% OFF)
