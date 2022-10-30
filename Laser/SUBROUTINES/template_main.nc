@@ -17,15 +17,35 @@
 (======CODE MANDATORY============)
 M3 S0  (M03 – Spindle on in a clockwise)
 (================================)
-S0 		(--Laser 000% OFF)
-G0 F1000 X0.000000 Y0.000000
-S1000	(---Laser 100% ON)
-S0 		(--Laser 000% OFF)
 (=BEGIN Engrave=========================)
 
+(New Coordinates---------------)
+S0
+G00 X10 Y10
+G92 X0 Y0 (Shifts current G54)
+(10,10)
+(------------------------------)
+(SUB PROGRAM CALL 1 TIMES M98 = subprogram call)
+#M97 "template_Coordinates_Subroutines_2022_10_07.nc"
+
+(New Coordinates---------------)
+S0
+G00 X10 Y10
+G92 X0 Y0 (Shifts current G54)
+(10,10)
+(------------------------------)
+(SUB PROGRAM CALL 1 TIMES M98 = subprogram call)
+#M97 "template_Coordinates_Subroutines_2022_10_07.nc"
+
+(New Coordinates---------------)
+S0
+G00 X-20 Y-20
+G92 X0 Y0 (Shifts current G54)
+(10,10)(10,10)(-20-20)
+(------------------------------)
+(SUB PROGRAM CALL 1 TIMES M98 = subprogram call)
+#M97 "template_Coordinates_Subroutines_2022_10_07.nc"
 
 (=END Engrave===========================)
 (======END============)
-(G00 – Rapid Positioning------------Laser OFF)
-S0 
-G0 Z10.000000
+S0 		(--Laser 000% OFF)

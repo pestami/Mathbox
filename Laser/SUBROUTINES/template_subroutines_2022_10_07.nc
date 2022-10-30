@@ -23,6 +23,85 @@ S1000	(---Laser 100% ON)
 S0 		(--Laser 000% OFF)
 (=BEGIN Engrave=========================)
 
+(New Coordinates---------------)
+S0
+G00 X10 Y10
+G92 X0 Y0 (Shifts current G54)
+(10,10)
+(------------------------------)
+
+(BEGIN SQUARE)
+G00 X00 Y00
+S1000
+G01 X10 Y00
+G01 X10 Y10
+G01 X00 Y10
+G01 X00 Y00
+S0
+(END SQUARE)
+(BEGIN ARTWORK)
+G00 X00 Y05
+S1000
+G03 X10 Y05 R5
+S0
+G00 X00 Y05
+S1000
+G02 X10 Y05 R5
+(END ARTWORK)
+
+(New Coordinates---------------)
+S0
+G00 X10 Y10
+G92 X0 Y0 (Shifts current G54)
+(10,10)(10,10)
+(------------------------------)
+
+(BEGIN SQUARE)
+G00 X00 Y00
+S1000
+G01 X10 Y00
+G01 X10 Y10
+G01 X00 Y10
+G01 X00 Y00
+S0
+(END SQUARE)
+(BEGIN ARTWORK)
+G00 X00 Y05
+S1000
+G03 X10 Y05 R5
+S0
+G00 X00 Y05
+S1000
+G02 X10 Y05 R5
+(END ARTWORK)
+
+(New Coordinates---------------)
+S0
+G00 X-20 Y-20
+G92 X0 Y0 (Shifts current G54)
+(10,10)(10,10)(-20-20)
+(------------------------------)
+
+(BEGIN SQUARE)
+G00 X00 Y00
+S1000
+G01 X10 Y00
+G01 X10 Y10
+G01 X00 Y10
+G01 X00 Y00
+S0
+(END SQUARE)
+(BEGIN ARTWORK)
+G00 X00 Y05
+S1000
+G03 X10 Y05 R5
+S0
+G00 X00 Y05
+S1000
+G02 X10 Y05 R5
+(END ARTWORK)
+
+
 
 (=END Engrave===========================)
 (======END============)
