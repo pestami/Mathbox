@@ -1,0 +1,17 @@
+{
+      "units": "metric",
+      "resolution-mode": "medium",
+      "resolution": 1,
+      "tools": {},
+      "workpiece": {
+        "automatic": true,
+        "margin": 5,
+        "bounds": {
+          "min": [-2.512768, -1.978027, -2.23125],
+          "max": [63.85392, 40.838961, 0]
+        }
+      },
+      "files": [
+        "Clock_SunRise_wedg_Annotiate.ngc"
+      ]
+    }
