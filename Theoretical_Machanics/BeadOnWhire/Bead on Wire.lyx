@@ -78,6 +78,9 @@
 \begin_body
 
 \begin_layout Part*
+\noindent
+
+\size largest
 Bead on a Wire
 \end_layout
 
@@ -98,6 +101,44 @@ What is the quickest distance between two points under the force of gravity?
 
 \begin_layout Section
 Definition of the Path
+\end_layout
+
+\begin_layout Standard
+Asuming the solution can be found by optimizing the path:
+\end_layout
+
+\begin_layout Standard
+.
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\emph on
+\begin_inset Formula $y_{1}=$
+\end_inset
+
+Y
+\begin_inset Formula $_{1}$
+\end_inset
+
+ sin(
+\begin_inset Formula $\frac{\pi}{\tau}$
+\end_inset
+
+
+\begin_inset Formula $x)$
+\end_inset
+
+ and y
+\begin_inset Formula $_{2}=Y_{2}$
+\end_inset
+
+ - Cx
+\end_layout
+
+\begin_layout Standard
+.
 \end_layout
 
 \begin_layout Standard
@@ -173,7 +214,11 @@ Potential Energy under gravity : E
 \begin_inset Formula $_{P}$
 \end_inset
 
-= mgh ; Kinetic Energy : E
+= mgh ; 
+\end_layout
+
+\begin_layout Standard
+Kinetic Energy : E
 \begin_inset Formula $_{k}$
 \end_inset
 
@@ -185,7 +230,11 @@ mv
 \begin_inset Formula $^{2}$
 \end_inset
 
-.Using the consrvation of energy principal, as the bead drops it gains kenetic
+.
+\end_layout
+
+\begin_layout Standard
+Using the consrvation of energy principal, as the bead drops it gains kenetic
  energy gained from the drop in height.
 \end_layout
 
