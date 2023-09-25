@@ -62,7 +62,7 @@ if len(sys.argv) == 2:
     print('Argument:', str(sys.argv[1]))
     WBname=str(sys.argv[1])
 else:
-    WBname='ParabolicMirror_OoCalc_02.xlsx'
+    WBname='ParabolicMirror_OoCalc.xlsx'
 
 print('=====================================================')
 
