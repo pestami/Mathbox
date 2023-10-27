@@ -20,7 +20,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-    #-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
 def GetNamedCellValue(sCellName,workbook,sheet):
 
@@ -51,7 +51,7 @@ import os
 from openpyxl import load_workbook
 from scipy import integrate
 from scipy.integrate import quad
-
+print('=====================================================')
 print('=====ARGUMENTS========================================')
 print( 'Arguments:', len(sys.argv), 'arguments.')
 print('Argument:', str(sys.argv[0]))
@@ -62,16 +62,16 @@ if len(sys.argv) == 2:
     print('Argument:', str(sys.argv[1]))
     WBname=str(sys.argv[1])
 else:
-    WBname='BeadOnWire_OoCalc.xlsx'
+    WBname='NULL.XLSX'
 
 print('=====================================================')
-
-print('=====================================================')
-print('====<Loading Workbook Constraints> ==================')
+print('< Loading Ranges fron XLSX >')
 print('=====================================================')
 
 ##WBname='ParabolicMirror_OoCalc_02.xlsx'
 WBpath='C:\\Users\\sesa237770\\Documents\\Mathbox\\Python_Samples\\02-BeadOnWire'
+if WBname=='NULL.XLSX':
+    WBname='BeadOnWire_OoCalc.xlsx'
 WBpath=os.path.dirname(__file__)
 WBpathname=WBpath +'\\'+ WBname
 
@@ -80,10 +80,6 @@ WBpathname=WBpath +'\\'+ WBname
 wb = load_workbook(WBpathname,data_only=True) # otherwise formula is displayed
 ws = wb.active  # work sheet
 #-------------------------------------------------------------------------------
-# @ jumbo mirror = 1000 x 500
-
-print('====Loading Constraints======')
-
 A=1  #
 B=-95  #
 L1=90  #
@@ -95,7 +91,7 @@ L1=GetNamedCellValue('rng_L1',wb,ws)
 L2=GetNamedCellValue('rng_L2',wb,ws)
 
 
-
+print('<---ECHO RANDES FRON XLS-----')
 print('\n A==' + str(A))
 print('\n B==' + str(B))
 print('\n L1==' + str(L1))
@@ -103,9 +99,28 @@ print('\n L2==' + str(L2))
 
 
 print('=====================================================')
-print('====</ Loading Workbook Constraints> ==================')
+print('</ Loading Ranges fron XLSX >')
 print('=====================================================')
 #-------------------------------------------------------------------------------
 # open workbook and load all variables
 #-------------------------------------------------------------------------------
+print('=====================================================')
+print('<Ploting Path of wireX >')
+print('=====================================================')
 
+x = np.linspace(0, -L1, 20)
+
+y = A*(x)**2 + B*x
+
+fig, ax = plt.subplots()
+ax.plot(x, y,'r')
+
+ax.set_xlim([-L1, 0])
+ax.set_ylim([-L2, L2])
+
+plt.savefig(WBpath+'\\'+'wirepath.jpg')
+##plt.show()
+
+print('=====================================================')
+print('</Ploting Path of wireX >')
+print('=====================================================')
