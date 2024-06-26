@@ -39,8 +39,8 @@ def GetNamedCellValue(sCellName,workbook,sheet):
     return sValue
 #-------------------------------------------------------------------------------
 import sys
-sys.path.append('C:\\ProgrammeApps\\python3')
-sys.path.append('C:\\ProgrammeApps\\python3\\Lib\\site-packages')
+#sys.path.append('C:\\ProgrammeApps\\python3')
+#sys.path.append('C:\\ProgrammeApps\\python3\\Lib\\site-packages')
 
 import matplotlib.pyplot as plt
 import numpy as np
