@@ -57,8 +57,8 @@ print( 'Arguments:', len(sys.argv), 'arguments.')
 print('Argument:', str(sys.argv[0]))
 
 lArguments=[]
-for i in range(len(sys.argv))
-if len(sys.argv) == 3:
+for i in range(len(sys.argv)):
+ if len(sys.argv) == 3:
         lArguments.append(sys.argv[1])
 
 print('Arguments:', lArguments)
