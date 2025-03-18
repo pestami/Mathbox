@@ -30,8 +30,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # create data
-x = [1,2,3,4,5]
-y = [3,3,3,3,3]
+x = [1.0,2,3,4,5]
+y = [3.0,3,3,3,3]
 
 # plot lines
 plt.plot(x, y, label = "line 1", linestyle="-")
