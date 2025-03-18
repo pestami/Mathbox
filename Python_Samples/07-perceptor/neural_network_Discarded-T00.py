@@ -13,8 +13,7 @@
 ##    pass
 
 
-import matplotlib.pyplot as plt
-
+import plotly.express as px
 
 
 
@@ -29,9 +28,8 @@ if __name__ == '__main__':
     X=[2,3]
 
 
-    x=[0, 1, 2, 3, 4]
-    y=[0, 1, 4, 9, 16]
+    fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
 
-  
-    plt.plot(x, y)
-    plt.show()
+    fig = px.scatter( x="X1", y="Y1")
+
+    fig.show()
