@@ -36,52 +36,51 @@ if __name__ == '__main__':
             if (val==1):
                  YC.append("green")
 
-        #===============================================================================
+    #===============================================================================
 
-        # # Prepare the PLOT
-        plt.scatter(X1, X2, color='blue')
-        plt.xlabel('X1-axis')
-        plt.ylabel('X2-axis')
-        plt.title('McCulloch-Pitts.Perceptron')
-        plt.axis((-1, +1, -1, +1))
-        plt.axis('equal')
-        # plt.axis.set_aspect('equal')
-        # plt.axisgrid(True, which='both')
-        plt.grid(True)
+    # # Prepare the PLOT
+    plt.scatter(X1, X2, color='blue')
+    plt.xlabel('X1-axis')
+    plt.ylabel('X2-axis')
+    SW = list(map(str, W))
 
-
-        #===============================================================================
-        # Calculate the line of best fit
-        #-------------------------------------------------------------------------------
-        slope, intercept = np.polyfit(X1, X2, 1)
-        xa=np.array(X1)   # i -integer
-        xa=np.linspace(-1, 1, num=20)
-        line = slope * xa + intercept
-
-        # Plot the scatter plot and line of best fit
-        plt.plot(xa, line, color='red', label='Math: Best Line Fit')
+    plt.title('McCulloch-Pitts.Perceptron W='+ ' '.join(SW))
+    plt.axis((-1, +1, -1, +1))
+    plt.axis('equal')
+    # plt.axis.set_aspect('equal')
+    # plt.axisgrid(True, which='both')
+    plt.grid(True)
 
 
+    #===============================================================================
+    # Calculate the line of best fit
+    #-------------------------------------------------------------------------------
+    slope, intercept = np.polyfit(X1, X2, 1)
+    xa=np.array(X1)   # i -integer
+    xa=np.linspace(-1, 1, num=20)
+    line = slope * xa + intercept
 
+    # Plot the scatter plot and line of best fit
+    plt.plot(xa, line, color='red', label='Math: Best Line Fit')
 
-        #===============================================================================
-        #===============================================================================
-        # Plot weights (Decision line)
-        #-------------------------------------------------------------------------------
-        intercept = 0
-        slope=-W[0]/W[1]
-        xa=np.linspace(-1, 1, num=20)
+    #===============================================================================
+    #===============================================================================
+    # Plot weights (Decision line)
+    #-------------------------------------------------------------------------------
+    intercept = 0
+    slope=-W[0]/W[1]
+    xa=np.linspace(-1, 1, num=20)
 
-        line = slope * xa + intercept
-        plt.plot(xa, line, color='black', label='Decision Line Boundary of Threshold Neoron',linestyle='dotted')
-        plt.legend()
+    line = slope * xa + intercept
+    plt.plot(xa, line, color='black', label='Decision Line Boundary of Threshold Neoron',linestyle='dotted')
+    plt.legend()
 
-        #===============================================================================
-        # Plot input X1 X2
-        #-------------------------------------------------------------------------------
-        plt.scatter(X1, X2, c=YC, label='Neuron inputs X1 X2')
+    #===============================================================================
+    # Plot input X1 X2
+    #-------------------------------------------------------------------------------
+    plt.scatter(X1, X2, c=YC, label='Neuron inputs X1 X2')
 
-        plt.legend()
+    plt.legend()
 
-        #===============================================================================
-        plt.show()
+    #===============================================================================
+    plt.show()
