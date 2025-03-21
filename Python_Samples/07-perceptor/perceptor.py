@@ -9,20 +9,27 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 import numpy as np
+import matplotlib.pyplot as plt
 
-class perceptron_v01:
+
+
+class perceptron:
 
     ##  Class variables: This variable is shared between all objects of a class
     ## command history and command latest
     W=[1,+1]    #line
-    E=1 # Enabler
-    T=1 # Threshhold
+    E=0 # Enabler
+    T=0 # Threshhold
     # X >> W.X >> SUM(W.X) >> E*SUM(W.X) = u >> Fthreshold(u)= Y1 >> Y1
 
     #========================================================
     def __init__(self,W,E,T ):    #W- weights   E - enabler  T- Theshold
 
-        return
+            self.W=W   #line
+            self.E=E # Enabler
+            self.T=T # Threshhold
+
+            return
 #-------------------------------------------------------
 #-------------------------------------------------------
     def predict(self,X1,X2):  # x -INPUT
@@ -31,13 +38,13 @@ class perceptron_v01:
         npX2=np.array(X2)
 
         # weighted input
-        npWX =npX1*W[0]+ npX2*W[1]
+        npWX =npX1*self.W[0]+ npX2*self.W[1]
         # weighted input x Enabler
-        npWX = npWX * E
+        npWX = npWX * self.E
 
         print("Predict: Weighted input: ",npWX)
 
-        O = list(map(lambda i: self.sigmoid(i,T), npWX))
+        O = list(map(lambda i: self.sigmoid(i,self.T), npWX))
         O1=list(O)
 
         print("Predict: Output: ",O1)
@@ -51,7 +58,8 @@ class perceptron_v01:
         return
 #-------------------------------------------------------
 # Theshold function
-    def sigmoid(self, u,threshold):  # u -INPUT   Y Output
+# threshold function set at the origin produces an output y,
+    def sigmoid(self, u,threshold):  # u -scalar INPUT   y scalar Output
 
             if (u > threshold):
                 Y=1
@@ -62,33 +70,86 @@ class perceptron_v01:
 ##            print(Y)
             return Y
 
-#-----------------------------a-----------------------------------------------
-
+#----------------------------------------------------------------------------
+##===========================================================================
+##=  Testing Peceptron
+##===========================================================================
 
 if __name__ == '__main__':
 
+    import sys
+    sys.path.append('C:/Users/sesa237770/Documents/Mathbox/Python_Samples/07-perceptor')
+    from perceptron_visualization import perceptron_visualization
 
-    print("============================================")
-    print("perceptron_v01")
-    print("=============================================")
+    mode=2  # 1 ="prediction" 2 ="training"
 
-    W=[ 0.8 , -0.5]
-##    W=[ 1.05 , 0.025] # Traind weights
+    if mode==1 :
+        print("============================================")
+        print("perceptron   Prediction")
+        print("=============================================")
 
-    E=1
-    T=0
+        W0=[ 0.8 , -0.5]
+        WT=[ 1.05 , 0.025]  # Traind weights
+        E=1
+        T=0   ## if u > 0  if u <0 if u = 0   ????
+        X1=[0.3,-0.6,-0.10,0.10]
+        X2=[0.7,0.3,-0.80,-0.45]
 
-    neuron01=perceptron_v01(W,E,T)
+        W= W0
 
-    X1=[0.3,-0.6,-0.10,0.10]
-    X2=[0.7,0.3,-0.80,-0.45]
+        print("X1=",X1)
+        print("X2=",X2)
+        print("W=",W , "(Chosen Weight vector Wi )")
+        print("\n")
 
-    print("X1=",X1)
-    print("X2=",X2)
-    print("W=",W)
+        neuron01=perceptron(W,E,T)
+        O1=neuron01.predict(X1,X2)
+        print("\nNeuron Output=",O1)
 
-    print("\n")
+    if mode==2 :
 
-    O1=neuron01.predict(X1,X2)
-    print("\nNeuron Output=",O1)
+        print("============================================")
+        print("perceptron   Training")
+        print("=============================================")
+
+
+        W0=[ 0.8 , -0.5]
+        WT=[ 1.05 , 0.025]
+
+        W= W0
+        X1=[0.3,-0.6,-0.10,0.10]
+        X2=[0.7,0.3,-0.80,-0.45]
+        Y1=[1,0,0,1]
+
+        neuronview=perceptron_visualization('PERCEPTRON','X1','X2')
+        neuronview.plot(X1,X2,W)
+
+
+        print("X1=",X1)
+        print("X2=",X2)
+        print("Y1=",Y1)
+        W0=[ 0.8 , -0.5]
+        E=1
+        T=0
+        beta=0.1   # A error gradient type number
+
+        neuron01=perceptron(W0,E,T)
+        Y=neuron01.predict(X1,X2)
+
+        print("\nNeuron Output=",Y)
+
+        npX1=np.array(X1)
+        npX2=np.array(X2)
+        npY1=np.array(Y1)
+        npY=np.array(Y)
+        npW=np.array(W0)
+
+## three error conditions  0 1 -1
+        ERROR= npY1 - npY
+        E=beta*ERROR
+        DeltaW= W0 + E[0]*beta
+
+        print("\nError=",ERROR)
+
+
 

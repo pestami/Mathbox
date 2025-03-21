@@ -21,20 +21,30 @@ import numpy as np
 
 if __name__ == '__main__':
 
-    for itterations in range(4):  # 0 to 4
-        print(itterations)
+##    for itterations in range(4):  # 0 to 4
+##        print(itterations)
 
-        W=[0.8,-0.5]
-        X1=[+0.30,-0.60,-0.10,+0.10]
-        X2=[+0.70,+0.30,-0.80,-0.45]
-        Y1=[1,1,0,0]
-        YC=[]
+#------------------------------------------------------------------------------
+# From  BOOK: neural networks for applied sciences and engineering , CH 2.5.3
+# Recomended BOOK: pattern recognition (4th, 2008)
+# "This book is the outgrowth of our teaching advanced undergraduate and graduate
+# courses over the past 20 years."
 
-        for val in  Y1:
-            if (val==0):
-                YC.append("red")
-            if (val==1):
-                 YC.append("green")
+    W=[0.8,-0.5]  # initial Weights
+    X1=[+0.30,-0.60,-0.10,+0.10]
+    X2=[+0.70,+0.30,-0.80,-0.45]
+
+    WT=[ 1.05 , 0.025] # Trained Weights
+
+    Y1=[1,1,0,0]   # Traind Output
+#------------------------------------------------------------------------------
+    YC=[]
+
+    for val in  Y1:
+        if (val==0):
+            YC.append("red")
+        if (val==1):
+             YC.append("green")
 
     #===============================================================================
 
@@ -72,7 +82,7 @@ if __name__ == '__main__':
     xa=np.linspace(-1, 1, num=20)
 
     line = slope * xa + intercept
-    plt.plot(xa, line, color='black', label='Decision Line Boundary of Threshold Neoron',linestyle='dotted')
+    plt.plot(xa, line, color='black', label='Initial(untrained) Decision Boundary',linestyle='dotted')
     plt.legend()
 
     #===============================================================================
