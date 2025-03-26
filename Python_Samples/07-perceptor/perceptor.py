@@ -25,11 +25,10 @@ class perceptron:
     #========================================================
     def __init__(self,W,E,T ):    #W- weights   E - enabler  T- Theshold
 
-            self.W=W   #line
-            self.E=E # Enabler
-            self.T=T # Threshhold
-
-            return
+        self.W=W   #line
+        self.E=E # Enabler
+        self.T=T # Threshhold
+        return
 #-------------------------------------------------------
 #-------------------------------------------------------
     def predict(self,X1,X2):  # x -INPUT
@@ -42,16 +41,38 @@ class perceptron:
         # weighted input x Enabler
         npWX = npWX * self.E
 
-        print("Predict: Weighted input: ",npWX)
+        print("Weighted input WX[i]=")
+        print(npWX)
 
         O = list(map(lambda i: self.sigmoid(i,self.T), npWX))
         O1=list(O)
 
-        # print("Predict: Output: ",O1)
+        print("Predict Y[i]=")
+        print(O1)
 
         return O1
 #-------------------------------------------------------
-    def learn(self, X , Y):  # X -INPUT   Y Output
+    def predictfull(self,X1,X2,W,E,T ):  # x -INPUT
+
+        npX1=np.array(X1)
+        npX2=np.array(X2)
+
+        # weighted input
+        npWX =npX1*W[0]+ npX2*W[1]
+        # weighted input x Enabler
+        npWX = npWX * E
+
+        print("Weighted input WX[i]=")
+        print(npWX)
+        O = list(map(lambda i: self.sigmoid(i,T), npWX))
+        O1=list(O)
+
+        print("Predict Y[i]=")
+        print(O1)
+
+        return O1
+#-------------------------------------------------------
+    def learn(self, X , Y,W,E,T ):  # X -INPUT   Y Output
 
 
 
@@ -121,13 +142,13 @@ if __name__ == '__main__':
         X2=[0.7,0.3,-0.80,-0.45]
         Y1=[1,0,0,1]
 
-        neuronview=perceptron_visualization('PERCEPTRON','X1','X2')
-        neuronview.plot(X1,X2,W)
+##        neuronview=perceptron_visualization('PERCEPTRON','X1','X2')
+##        neuronview.plot(X1,X2,W)
 
 
-        print("X1=",X1)
-        print("X2=",X2)
-        print("Y1=",Y1)
+        print("X1[i]=",X1)
+        print("X2[i]=",X2)
+        print("Y1[i]=",Y1)
         W0=[ 0.8 , -0.5]
         E=1
         T=0
@@ -136,24 +157,38 @@ if __name__ == '__main__':
         neuron01=perceptron(W0,E,T)
         Y=neuron01.predict(X1,X2)
         print("\n")
-        print("Expected Output=",Y1)
-        print("Neuron-- Output=",Y)
+        print("Expected Output Y1[i]=",Y1)
+        print("Neuron-- Output Y[i]=",Y)
 
-        npX1=np.array(X1)
-        npX2=np.array(X2)
-        npY1=np.array(Y1)
-        npY=np.array(Y)
-        npW0=np.array(W0)
 
-## three error conditions  0 1 -1
-        ERROR= npY1 - npY
-        E=beta*ERROR
-        DeltaW=  [X1[0]*beta ,X2[0]*beta ]
-        W=npW0 + [X1[0]*beta ,X2[0]*beta ]
+        print("============================================")
+        print("ITTERATION")
+        print("=============================================")
 
-        print("Error--- Output=",ERROR)
-        print("DeltaW--- Output=",DeltaW)
-        print("Wnew  --- Output=",W)
+        for i in range(len(X1)):
+##        for i in range(2):
 
+            if i==0:
+                W=W0
+                npX1=np.array(X1)
+                npX2=np.array(X2)
+                npY1=np.array(Y1)   # Learning Expected Values
+
+            print("---------------------------------------")
+            print("Iterration=",i)
+            print("DEBUG Call: predictfull:")
+            Y=neuron01.predictfull(X1,X2,W,E,T)
+            npY=np.array(Y)
+            npW=np.array(W)
+
+            ERROR= npY1[i] - npY[i]   ## three error conditions  0 1 -1
+            E=ERROR.item()
+            DeltaW=  [X1[i]*beta*E ,X2[i]*beta*E ]
+            W=npW + DeltaW
+
+            print("Error---- Output=",ERROR)
+            print("DeltaW--- Output=",DeltaW)
+            print("Wnew[i]-- Output=",W)
+        print("---------------------------------------")
 
 
