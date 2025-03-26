@@ -18,16 +18,18 @@ class perceptron:
     ##  Class variables: This variable is shared between all objects of a class
     ## command history and command latest
     W=[1,+1]    #line
-    E=0 # Enabler
-    T=0 # Threshhold
+    Enabler=0 # Enabler
+    Threshold=0 # Threshhold
+    bias=0
     # X >> W.X >> SUM(W.X) >> E*SUM(W.X) = u >> Fthreshold(u)= Y1 >> Y1
 
     #========================================================
-    def __init__(self,W,E,T ):    #W- weights   E - enabler  T- Theshold
+    def __init__(self,W,Enabler,Threshold,bias ):    #W- weights   E - enabler  T- Theshold
 
         self.W=W   #line
-        self.E=E # Enabler
-        self.T=T # Threshhold
+        self.Enabler=Enabler # Enabler
+        self.Threshold=Threshold # Threshhold
+        self.bias=bias
         return
 #-------------------------------------------------------
 #-------------------------------------------------------
@@ -39,12 +41,12 @@ class perceptron:
         # weighted input
         npWX =npX1*self.W[0]+ npX2*self.W[1]
         # weighted input x Enabler
-        npWX = npWX * self.E
+        npWX = npWX * self.Enabler
 
         print("Weighted input WX[i]=")
         print(npWX)
 
-        O = list(map(lambda i: self.sigmoid(i,self.T), npWX))
+        O = list(map(lambda i: self.sigmoid(i,self.Threshold), npWX))
         O1=list(O)
 
         print("Predict Y[i]=")
@@ -52,7 +54,7 @@ class perceptron:
 
         return O1
 #-------------------------------------------------------
-    def predictfull(self,X1,X2,W,E,T ):  # x -INPUT
+    def predictverbose(self,X1,X2,W,Enabler,Threshold,bias  ):  # x -INPUT
 
         npX1=np.array(X1)
         npX2=np.array(X2)
@@ -60,23 +62,53 @@ class perceptron:
         # weighted input
         npWX =npX1*W[0]+ npX2*W[1]
         # weighted input x Enabler
-        npWX = npWX * E
+        npWX = npWX * Enabler  # + bias
 
-        print("Weighted input WX[i]=")
-        print(npWX)
-        O = list(map(lambda i: self.sigmoid(i,T), npWX))
+##        print("Weighted input WX[i]=")
+##        print(npWX)
+        O = list(map(lambda i: self.sigmoid(i,Threshold), npWX))
         O1=list(O)
 
-        print("Predict Y[i]=")
-        print(O1)
+##        print("Predict Y[i]=")
+##        print(O1)
 
         return O1
 #-------------------------------------------------------
-    def learn(self, X , Y,W,E,T ):  # X -INPUT   Y Output
+    def learn(self, X1 , Y1,W,Enabler,Threshold,bias ):  # X -INPUT   Y Output
 
+        print("============================================")
+        print("ITTERATION")
+        print("=============================================")
+        print("Initial Parameters W[W1,W2] Enabler,Threshold")
+        print(W,Enabler,Threshold)
 
+        for i in range(len(X1)):
+##        for i in range(2):
 
-        return
+            if i==0:
+                W=W0
+                npX1=np.array(X1)
+                npX2=np.array(X2)
+                npY1=np.array(Y1)   # Learning Expected Values
+
+            print("---------------------------------------")
+            print("Iterration=",i)
+##            print("DEBUG Call: predictfull:")
+            Y=neuron01.predictverbose(X1,X2,W,Enabler,Threshold,bias)
+            npY=np.array(Y)
+            npW=np.array(W)
+
+            ERROR= npY1[i] - npY[i]   ## three error conditions  0 1 -1
+            Err=ERROR.item()
+            DeltaW=  [X1[i]*beta*Err ,X2[i]*beta*Err ]
+            W=npW + DeltaW
+
+            print("Error---- Output=",ERROR)
+            print("DeltaW--- Output=",DeltaW)
+            print("Wnew[i]-- Output=",W)
+        print("---------------------------------------")
+
+        return W
 #-------------------------------------------------------
 # Theshold function
 # threshold function set at the origin produces an output y,
@@ -111,8 +143,9 @@ if __name__ == '__main__':
 
         W0=[ 0.8 , -0.5]
         WT=[ 1.05 , 0.025]  # Traind weights
-        E=1
-        T=0   ## if u > 0  if u <0 if u = 0   ????
+        Enabler=1
+        Threshold=0   ## if u > 0  if u <0 if u = 0   ????
+        bias=0
         X1=[0.3,-0.6,-0.10,0.10]
         X2=[0.7,0.3,-0.80,-0.45]
 
@@ -123,7 +156,7 @@ if __name__ == '__main__':
         print("W=",W , "(Chosen Weight vector Wi )")
         print("\n")
 
-        neuron01=perceptron(W,E,T)
+        neuron01=perceptron(W,Enabler,Threshold,bias )
         O1=neuron01.predict(X1,X2)
         print("\nNeuron Output=",O1)
 
@@ -132,63 +165,35 @@ if __name__ == '__main__':
         print("============================================")
         print("perceptron   Training")
         print("=============================================")
-
-
         W0=[ 0.8 , -0.5]
         WT=[ 1.05 , 0.025]
+        Enabler=1
+        Threshold=0   ## if u > 0  if u <0 if u = 0   ????
+        bias=0
 
         W= W0
         X1=[0.3,-0.6,-0.10,0.10]
         X2=[0.7,0.3,-0.80,-0.45]
         Y1=[1,0,0,1]
 
-##        neuronview=perceptron_visualization('PERCEPTRON','X1','X2')
-##        neuronview.plot(X1,X2,W)
-
-
         print("X1[i]=",X1)
         print("X2[i]=",X2)
         print("Y1[i]=",Y1)
+
         W0=[ 0.8 , -0.5]
-        E=1
-        T=0
+        Enabler=1
+        Threshold=0
         beta=0.5   # A error gradient type number
 
-        neuron01=perceptron(W0,E,T)
-        Y=neuron01.predict(X1,X2)
-        print("\n")
-        print("Expected Output Y1[i]=",Y1)
-        print("Neuron-- Output Y[i]=",Y)
-
+        neuron01=perceptron(W0,Enabler,Threshold,bias)
+        W= neuron01.learn(X1 ,Y1,W,Enabler,Threshold,bias )
+        print("W_final[i]=",W)
 
         print("============================================")
-        print("ITTERATION")
+        print("perceptron   Training COMPLETE")
         print("=============================================")
 
-        for i in range(len(X1)):
-##        for i in range(2):
-
-            if i==0:
-                W=W0
-                npX1=np.array(X1)
-                npX2=np.array(X2)
-                npY1=np.array(Y1)   # Learning Expected Values
-
-            print("---------------------------------------")
-            print("Iterration=",i)
-            print("DEBUG Call: predictfull:")
-            Y=neuron01.predictfull(X1,X2,W,E,T)
-            npY=np.array(Y)
-            npW=np.array(W)
-
-            ERROR= npY1[i] - npY[i]   ## three error conditions  0 1 -1
-            E=ERROR.item()
-            DeltaW=  [X1[i]*beta*E ,X2[i]*beta*E ]
-            W=npW + DeltaW
-
-            print("Error---- Output=",ERROR)
-            print("DeltaW--- Output=",DeltaW)
-            print("Wnew[i]-- Output=",W)
-        print("---------------------------------------")
+        neuronview=perceptron_visualization('PERCEPTRON','X1','X2')
+        neuronview.plot(X1,X2,W0,W)
 
 
