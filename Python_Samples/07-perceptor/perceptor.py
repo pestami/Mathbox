@@ -47,7 +47,7 @@ class perceptron:
         O = list(map(lambda i: self.sigmoid(i,self.T), npWX))
         O1=list(O)
 
-        print("Predict: Output: ",O1)
+        # print("Predict: Output: ",O1)
 
         return O1
 #-------------------------------------------------------
@@ -131,25 +131,29 @@ if __name__ == '__main__':
         W0=[ 0.8 , -0.5]
         E=1
         T=0
-        beta=0.1   # A error gradient type number
+        beta=0.5   # A error gradient type number
 
         neuron01=perceptron(W0,E,T)
         Y=neuron01.predict(X1,X2)
-
-        print("\nNeuron Output=",Y)
+        print("\n")
+        print("Expected Output=",Y1)
+        print("Neuron-- Output=",Y)
 
         npX1=np.array(X1)
         npX2=np.array(X2)
         npY1=np.array(Y1)
         npY=np.array(Y)
-        npW=np.array(W0)
+        npW0=np.array(W0)
 
 ## three error conditions  0 1 -1
         ERROR= npY1 - npY
         E=beta*ERROR
-        DeltaW= W0 + E[0]*beta
+        DeltaW=  [X1[0]*beta ,X2[0]*beta ]
+        W=npW0 + [X1[0]*beta ,X2[0]*beta ]
 
-        print("\nError=",ERROR)
+        print("Error--- Output=",ERROR)
+        print("DeltaW--- Output=",DeltaW)
+        print("Wnew  --- Output=",W)
 
 
 
