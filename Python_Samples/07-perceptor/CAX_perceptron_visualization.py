@@ -24,10 +24,19 @@ class perceptron_visualization:
             return
 #-------------------------------------------------------
 #-------------------------------------------------------
-    def plot(self,X1,X2,W):  # x -INPUT
+    def plot(self,X1,X2,Y1,W0,W):  # x -INPUT
+
+        npY1=np.array(Y1)
+
+        color_map = {0: 'red', 1: 'green'}
+        C=[color_map[Y] for Y in Y1]
+
+
 
         plt.figure(num='CLASSIFIERS')
-        plt.scatter(X1, X2, color='blue')
+        #plt.scatter(X1, X2, color='blue')
+        plt.scatter(X1, X2, color=C)
+
         plt.xlabel('X1-axis')
         plt.ylabel('X2-axis')
         plt.axvspan(-0.01, 0.01, color='red', alpha=0.5)
@@ -36,12 +45,29 @@ class perceptron_visualization:
         plt.grid(True)
 
         intercept = 0
-        W=[ 0.8 , -0.5]
-        slope=-W[0]/W[1]
+        slope=-W0[0]/W0[1]
         xa=np.linspace(-1, 1, num=20)
 
         line = slope * xa + intercept
-        plt.plot(xa, line, color='black', label=self.title , linestyle='dotted')
+        plt.plot(xa, line, color='grey' , label=self.title, linestyle='dotted')
+
+        intercept = 0
+        slope=-W[0]/W[1]
+##        xb=np.linspace(-1, 1, num=20)
+
+        lineb = slope * xa + intercept
+        plt.plot(xa, lineb, color='green', label=self.title , linestyle='-')
+
+        slopep1, intercept = np.polyfit(X1, X2, 1)
+        linep1 = slopep1 * xa + intercept
+        plt.plot(xa, linep1, color='red', label=self.title , linestyle='dotted')
+
+##        slopep2, intercept = np.polyfit(X2, X1, 1)
+##        linep2 = slopep2 * xa + intercept
+##        plt.plot(xa, linep2, color='orange', label=self.title , linestyle='dotted')
+
+##        plt.xlim(min(X1)- 0.05*min(X1), max(X1)+ 0.05*max(X1))  # sets the x-axis limits to (2, 8)
+##        plt.ylim(min(X2)- 0.05*min(X2), max(X2)+ 0.05*max(X2))  # sets the y-axis limits to (-1.5, 1.5)
 
         plt.show()
 
@@ -64,8 +90,10 @@ if __name__ == '__main__':
     Y1=[1,0,0,1]
 
     W0=[ 0.8 , -0.5]
+    W=[1.05 , 0.25]
+
     neuron=perceptron_visualization('PERCEPTRON','X1','X2')
-    neuron.plot(X01,X02,W0)
+    neuron.plot(X01,X02,Y1,W0,W)
 
 
 
