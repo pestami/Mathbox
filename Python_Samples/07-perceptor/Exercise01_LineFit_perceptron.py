@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
     mode=2 # 2 Training 1 Prediction
 
-    W0=[ 0.8 , 0.5]
+    W0=[ 0.8 , 0.5, 0.1]
 ##    WT=[ 1.05 , 0.025]  # Traind weights
     Enabler=1
     Threshold=0   ## if u > 0  if u <0 if u = 0   ????
@@ -40,38 +40,45 @@ if __name__ == '__main__':
 
     #EXAMPLE 1
     if Example==1:
-        W0=[ 0.8 , 0.5]  # Random
-        W0=[0.85 , 0.275]  # With initial learning
+        W0=[ 0.8 , 0.5, 0.1]  # Random bias=0.1
+        W0=[0.85 , 0.275, 0.1] # With initial learning
+
+
         X1=[0.3,-.6,-0.10,0.10]
         X2=[0.7,0.3,-0.80,-0.45]
-        Y1=[1,0,0,1]
-        Enabler=1
+
+        X1=[0.3,-.6,-0.10,0.10]
+        X2=[0.7,0.3,-0.80,-0.45]
+
+        Y1=[1,-1,-1,1]
         Threshold=0   ## if u > 0  if u <0 if u = 0   ????
-        bias=0.1
+
     #EXAMPLE 2
     if Example==2:
-        W0=[ 0.8 , -0.5]
+        W0=[ 0.8 , -0.5, 0.1]   # Random bias=0.1
         X1=[0.2,0.2,0.8,1.0]
         X2=[0.3,0.8,0.2,0.8]
-        Y1=[0,0,0,1]
-        Enabler=1
+        Y1=[-1,-1,-1,1]
         Threshold=0   ## if u > 0  if u <0 if u = 0   ????
-        bias=0.1
+
     #EXAMPLE 3
     if Example==3:
-        W0=[ 0.8 , -0.5]
+        W0=[ 0.8 , -0.5, 0.1]  # Random bias=0.1
+        W0=[0.85,  0.275, 0.1  ]
         X1=[0.2,0.2,0.8,1.0,0.2,0.2,0.8,1.0]
         X2=[0.3,0.8,0.2,0.8,0.3,0.8,0.2,0.8]
-        Y1=[0,0,0,1,0,0,0,1]
-        Enabler=1
-        Threshold=0   ## if u > 0  if u <0 if u = 0   ????
-        bias=0.1
-    #===========
-    beta=0.5   # A error gradient type number
-    W= W0
+        Y1=[-1,-1,-1,1,-1,-1,-1,1]
 
+        Threshold=0   ## if u > 0  if u <0 if u = 0   ????
+
+    print("============================================")
+    print("perceptron   Training")
+    print("--------------------------------------------")
+    beta=0.2   # A error gradient type number
+    W= W0
     print("X1=",X1)
     print("X2=",X2)
+    print("Threshold=",Threshold)
     print("W=",W , "(Chosen Weight vector Wi )")
     print("\n")
 ##============================================================================
@@ -81,12 +88,13 @@ if __name__ == '__main__':
 ##============================================================================
     if mode==2 :
         print("============================================")
-        print("perceptron   Training")
+        print("perceptron   Training, Example=" , Example)
         print("--------------------------------------------")
-        neuron01=perceptron(W0,Enabler,Threshold,bias)
 
-        W , bias= neuron01.learn(X1,X2 ,Y1,W,Enabler,Threshold,bias,beta )
+        neuron01=perceptron(W0,Threshold)
+        W = neuron01.learn(X1,X2 ,Y1,W,Enabler,beta )
         print("W_final[i]=",W)
+
 
         print(".............................................")
         print("perceptron   Training COMPLETE")
@@ -97,7 +105,7 @@ if __name__ == '__main__':
 ##============================================================================
 ##============================================================================
     if mode==1 :
-        neuron01=perceptron(W,Enabler,Threshold,bias )
+        neuron01=perceptron(W,Threshold )
         O1=neuron01.predict(X1,X2)
         print("\nNeuron Output=",O1)
 ##============================================================================

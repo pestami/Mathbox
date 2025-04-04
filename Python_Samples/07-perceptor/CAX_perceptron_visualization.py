@@ -28,7 +28,7 @@ class perceptron_visualization:
 
         npY1=np.array(Y1)
 
-        color_map = {0: 'red', 1: 'green'}
+        color_map = {-1: 'red', 1: 'green'}
         C=[color_map[Y] for Y in Y1]
 
 
@@ -44,14 +44,14 @@ class perceptron_visualization:
         plt.axis('equal')
         plt.grid(True)
 
-        intercept = 0
+        intercept =  W[2]/W[1]      # X2 = -W1/W2*X1 - W0/W2
         slope=-W0[0]/W0[1]
         xa=np.linspace(-1, 1, num=20)
 
         line = slope * xa + intercept
         plt.plot(xa, line, color='grey' , label=self.title, linestyle='dotted')
 
-        intercept = 0
+        intercept = W[2]/W[1]
         slope=-W[0]/W[1]
 ##        xb=np.linspace(-1, 1, num=20)
 
@@ -87,10 +87,10 @@ if __name__ == '__main__':
 
     X01=[0.3,-0.6,-0.10,0.10]
     X02=[0.7,0.3,-0.80,-0.45]
-    Y1=[1,0,0,1]
+    Y1=[1,-1,-1,1]
 
-    W0=[ 0.8 , -0.5]
-    W=[1.05 , 0.25]
+    W0=[ 0.8 , -0.5,0]
+    W=[1.05 , 0.25,0]
 
     neuron=perceptron_visualization('PERCEPTRON','X1','X2')
     neuron.plot(X01,X02,Y1,W0,W)
