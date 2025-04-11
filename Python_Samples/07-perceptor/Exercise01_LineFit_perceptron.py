@@ -33,6 +33,7 @@ if __name__ == '__main__':
     Enabler=1
     Threshold=0   ## if u > 0  if u <0 if u = 0   ????
     bias=0
+    beta=0.8
 
     Example=1
 
@@ -55,7 +56,8 @@ if __name__ == '__main__':
 
     #EXAMPLE 2
     if Example==2:
-        W0=[ 0.8 , -0.5, 0.1]   # Random bias=0.1
+        W0=[ 0.8 , 1, -1.4]   # Random bias=0.1
+
         X1=[0.2,0.2,0.8,1.0]
         X2=[0.3,0.8,0.2,0.8]
         Y1=[-1,-1,-1,1]
@@ -63,7 +65,7 @@ if __name__ == '__main__':
 
     #EXAMPLE 3
     if Example==3:
-        W0=[ 0.8 , -0.5, 0.1]  # Random bias=0.1
+        W0=[ 0.8 , -1, -1.4]  # Random bias=0.1
         W0=[0.85,  0.275, 0.1  ]
         X1=[0.2,0.2,0.8,1.0,0.2,0.2,0.8,1.0]
         X2=[0.3,0.8,0.2,0.8,0.3,0.8,0.2,0.8]
@@ -92,6 +94,7 @@ if __name__ == '__main__':
         print("--------------------------------------------")
 
         neuron01=perceptron(W0,Threshold)
+            #learn(self, X1,X2 , Y1, W0, Enabler, beta )
         W = neuron01.learn(X1,X2 ,Y1,W,Enabler,beta )
         print("W_final[i]=",W)
 

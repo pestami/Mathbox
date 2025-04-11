@@ -87,10 +87,10 @@ class perceptron:
 ##            ERROR= npY1[i] - npY[i]   ## three error conditions  0 1 -1
             if npY1[i] == npY[i]:
                 ERROR=0
-            if npY1[i] < npY[i]:
-                ERROR=-1
             if npY1[i] > npY[i]:
                 ERROR=1
+            if npY1[i] < npY[i]:
+                ERROR=-1
             # 1  -1
             # 1  1
             # -1 1
@@ -99,7 +99,7 @@ class perceptron:
             #(1-1)
 ##            Err=ERROR.item()
             Err=ERROR
-            DeltaW=  [X1[i]*beta*Err ,X2[i]*beta*Err , 1*beta*Err]
+            DeltaW=  [X1[i]*beta*Err ,X2[i]*beta*Err , +1*beta*Err]
             W=npW.tolist()
             W=np.add(W,DeltaW)
             print("X1=",X1[i]," X2=",X2[i]," Y1=",Y1[i]," Yp=",Y[i])
@@ -146,7 +146,7 @@ if __name__ == '__main__':
 
         W0=[ 0.8 , -0.5,0]
         WT=[ 1.05 , 0.025,0]  # Traind weights
-        Threshold=1
+        Threshold=0
         X1=[0.3,-0.6,-0.10,0.10]
         X2=[0.7,0.3,-0.80,-0.45]
 
@@ -169,14 +169,23 @@ if __name__ == '__main__':
         print("============================================")
         print("perceptron   Training")
         print("=============================================")
-        W0=[ 0.8 , 0.5,0]   # Random
+        W0=[ 0.8 , -0.5,0]   # Random
 ##        W0=[0.85 , 0.275,0]  # With initial learning
         X1=[0.3,-.6,-0.10,0.10]
         X2=[0.7,0.3,-0.80,-0.45]
         Y1=[1,-1,-1,1]
 
-        Threshold=1
-        beta=0.5   # A error gradient type number
+        W0=[ 0.8 , 1,-1.4]   # Random
+##        W0=[0.85 , 0.275,0]  # With initial learning
+##        W0=[0.64, 0.6,  0.2 ]
+        W0=[2.56, 2.68, 0.2 ]
+
+        X1=[0.2,0.2,0.8,1]
+        X2=[0.3,0.8,0.2,0.8]
+        Y1=[-1,-1,-1,1]
+
+        Threshold=0
+        beta=0.8 # A error gradient type number
 
         print("X1[i]=",X1)
         print("X2[i]=",X2)
