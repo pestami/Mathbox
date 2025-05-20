@@ -227,3 +227,4 @@ plt.savefig(WBpath+'\\'+'Parabola.jpg')
 plt.show()
 plt.show(block=True)
 
+print('=====PROGRAM COMPLETED=================================')
