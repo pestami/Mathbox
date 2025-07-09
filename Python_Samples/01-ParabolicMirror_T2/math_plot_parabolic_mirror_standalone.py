@@ -143,7 +143,7 @@ while Larc > LengthMirrorArc:
     Xfocus=b
 
     print('======================================')
-    print('====Calculating Parabola constraints======')
+    print('====Parabola constants a b c======')
     print('======================================')
 
     print('\n Equation=' +"a(X + b)^2 + c")
@@ -151,7 +151,9 @@ while Larc > LengthMirrorArc:
     print('b=' + str(b))
     print('c=' + str(c))
 
-    print(' Equation= ' + str(a)+"(X + "+ str(b)+")^2 +"+ str(c))
+    sEquation=' Equation= ' + str(a)+"(X + "+ str(b)+")^2 +"+ str(c)
+
+    print(sEquation)
     print(' Y Focus = ' + str(Yfocus))
 
     print('\n==========================================')
@@ -221,12 +223,14 @@ ax.plot(x2, y2, 'g')
 ax.annotate('Focus Y= '+ str(Yfocus), xy=(Xfocus, Yfocus), xytext=(100, 400), arrowprops=dict(facecolor='black', shrink=0.05),      )
 
 ax.annotate('Arc L=' + str(Larc) +" Xmax="+str(Xmax)  +" Ymax="+str(Ymax_round)+' Focus Y= '+ str(Yfocus) +" mm",
-            xy=(.025, .975), xycoords='figure fraction',
+            xy=(0.15, 0.8), xycoords='figure fraction',
             horizontalalignment='left', verticalalignment='top',
             fontsize=12)
 
             # Add horizontal and vertical grid
 ax.grid(True, which='both', axis='both', linestyle='--', linewidth=0.5)
+
+fig.suptitle('Parabola: ' +sEquation)
 
 ax.set_xlim([0, 500])
 ax.set_ylim([0, 300])
