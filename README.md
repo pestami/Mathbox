@@ -15,3 +15,11 @@ Focus Height:  Itterated with goal of coinciding with height of mirror.
 ![graph](Python_Samples/01-ParabolicMirror_T2/images/ParabolicMirror_01.png)
 
 
+
+## 2. Perceptor
+
+Open Office Model:
+
+Used to experiment with Algorythm.
+
+![graph](Python_Samples\07-perceptor\images\perceptor_calc.png)
